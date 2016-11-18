@@ -27,7 +27,37 @@ class IJSPerson extends HTMLElement {
         this.dispatchEvent(clickEvent);
     }
 
-    expandTo(otherRect) {
+    expandTo(otherRect, endDelayDone) {
+        this.classList.toggle("person--transitioning", true);
+
+        this.style.transform = this._getTransformFor(otherRect);
+
+        endDelayDone.then(() => {
+            this.classList.toggle("person--transitioning", false);
+            this.classList.toggle("person--expanded", true);
+            this.style.transform = "none";
+        });
+    }
+
+    contractFrom(otherRect, delayDone, transitionDone) {
+        this.classList.toggle("person--expanded", false);
+
+        this.style.transform = this._getTransformFor(otherRect);
+
+        requestAnimationFrame(() => {
+            this.classList.toggle("person--transitioning", true);
+
+            delayDone.then(() => {
+                this.style.transform = "none"
+            });
+
+            transitionDone.then(() => {
+                this.classList.toggle("person--transitioning", false)
+            });
+        });
+    }
+
+    _getTransformFor(otherRect) {
         const thisRect = this.getBoundingClientRect();
 
         const thisCenterX = (thisRect.left + thisRect.right) / 2;
@@ -40,18 +70,7 @@ class IJSPerson extends HTMLElement {
         const scaleX = otherRect.width / thisRect.width;
         const scaleY = otherRect.height / thisRect.height;
 
-        this.style.transform = `translate(${dx}px, ${dy}px) scale(${scaleX}, ${scaleY})`;
-        this.classList.add("person--transitioning");
-    }
-
-    contract() {
-        this.style.transform = "";
-
-        const stopTransitioning = () => {
-            this.classList.remove("person--transitioning");
-            this.removeEventListener("transitionend", stopTransitioning);
-        };
-        this.addEventListener("transitionend", stopTransitioning);
+        return `translate(${dx}px, ${dy}px) scale(${scaleX}, ${scaleY})`;
     }
 }
 

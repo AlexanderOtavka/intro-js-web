@@ -9,9 +9,4 @@ document.addEventListener("ijs-person-click", event => {
     const person = event.target;
 
     personDetail.personElement = person;
-    const openPerson = () => {
-        personDetail.isOpen = true;
-        person.removeEventListener("transitionend", openPerson);
-    };
-    person.addEventListener("transitionend", openPerson);
 });
