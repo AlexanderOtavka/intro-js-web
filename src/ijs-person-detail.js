@@ -85,13 +85,21 @@ class IJSPersonDetail extends HTMLElement {
 
     onResize() {
         const rect = this._wrapper.getBoundingClientRect();
-        this._imageContainer.style.height = `${rect.width}px`;
+        const detailWidth = rect.width;
+        this._imageContainer.style.height = `${detailWidth}px`;
 
         // todo: get values from css
-        const smallWidth = 200;
-        const smallFontSize = 18;
-        const bigFontSize = (smallFontSize / smallWidth) * rect.width;
-        this._name.style.fontSize = `${bigFontSize}px`;
+        const personWidth = 200;
+        const personFontSize = 18;
+        const personNamePadding = 8;
+
+        const detailRatio = detailWidth / personWidth;
+
+        const detailFontSize = personFontSize * detailRatio;
+        this._name.style.fontSize = `${detailFontSize}px`;
+
+        const detailNamePadding = personNamePadding * detailRatio;
+        this._name.style.padding = `${detailNamePadding}px`;
     }
 
     _doneTransitioning(element = this) {
