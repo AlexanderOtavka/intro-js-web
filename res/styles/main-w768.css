@@ -1,0 +1,14 @@
+/**
+ * main-w768.css
+ *
+ * Created by Zander Otavka on 11/17/16.
+ */
+
+html {
+    --dimen-header-height: 64px;
+    --dimen-main-padding-horiz: 10%;
+}
+
+.main__heading {
+    margin-top: 16px;
+}

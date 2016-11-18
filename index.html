@@ -1,0 +1,80 @@
+<!--
+ ! index.html
+ !
+ ! Created by Zander Otavka on 11/16/16.
+ !-->
+
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport"
+          content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes" />
+
+    <title>Intro to JS on the Web</title>
+    <meta name="description" content="An example site to demonstrate JavaScript fundamentals." />
+
+    <link rel="stylesheet" href="/res/styles/main.css" />
+    <link rel="stylesheet" href="/res/styles/main-w425.css" media="(min-width: 425px)" />
+    <link rel="stylesheet" href="/res/styles/main-w768.css" media="(min-width: 768px)" />
+    <link rel="stylesheet" href="/res/styles/person.css" />
+    <link rel="stylesheet" href="/res/styles/person-grid.css" />
+    <link rel="stylesheet" href="/res/styles/person-detail.css" />
+    <link rel="stylesheet" href="/res/styles/person-detail-w425.css" media="(min-width: 425px)" />
+
+    <link rel="import" href="/res/views/person.html" id="person-view" />
+</head>
+
+<body>
+    <header class="header">
+        <h1 class="header__title">Introduction to JavaScript on the Web</h1>
+        <nav class="header__nav">
+            <a href="/about.html">About</a>
+        </nav>
+    </header>
+
+    <main class="main">
+        <h2 class="main__heading">People</h2>
+        <ijs-person-grid class="person-grid" source-url="/people.json">
+            <ijs-person class="person">
+                <img class="person__image" src="/res/images/bill-nye.jpg" />
+                <h3 class="person__name">Bill Nye</h3>
+            </ijs-person>
+
+            <ijs-person class="person">
+                <img class="person__image" src="/res/images/eobard-thawne.jpg" />
+                <h3 class="person__name">Eobard Thawne</h3>
+            </ijs-person>
+
+            <ijs-person class="person">
+                <img class="person__image" src="/res/images/neil-tyson.jpg" />
+                <h3 class="person__name">Neil DeGrasse Tyson</h3>
+            </ijs-person>
+        </ijs-person-grid>
+    </main>
+
+    <ijs-person-detail class="person-detail" id="person-detail">
+        <section class="person-detail__wrapper">
+            <button class="person-detail__close-button">
+                <img src="/res/drawables/close.svg" />
+            </button>
+            <section class="person-detail__content">
+                <figure class="person-detail__image-container">
+                    <img class="person__image person-detail__image" src="/res/images/bill-nye.jpg" />
+                    <figcaption class="person__name person-detail__name">Bill Nye</figcaption>
+                </figure>
+                <p class="person-detail__bio">William Sanford "Bill" Nye, popularly known as Bill Nye the Science Guy, is an American actor, science educator, television presenter, and mechanical engineer.</p>
+            </section>
+        </section>
+
+        <div id="person-detail__background"></div>
+    </ijs-person-detail>
+
+    <script src="/src/ijs-person-grid.js"></script>
+    <script src="/src/ijs-person.js"></script>
+    <script src="/src/ijs-person-detail.js"></script>
+    <script src="/src/event-handlers.js"></script>
+</body>
+
+</html>

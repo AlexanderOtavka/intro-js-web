@@ -1,0 +1,11 @@
+/**
+ * person-grid.css
+ *
+ * Created by Zander Otavka on 11/17/16.
+ */
+
+.person-grid {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}

@@ -1,0 +1,99 @@
+/**
+ * main.css
+ *
+ * Created by Zander Otavka on 11/16/16.
+ */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    --color-primary: #f0db4f;
+    --color-headings: #333;
+    --color-background: #fafafa;
+
+    --dimen-header-font-size: 20px;
+    --dimen-section-heading-font-size: 24px;
+    --dimen-header-height: 52px;
+    --dimen-main-padding-vert: 16px;
+    --dimen-main-padding-horiz: 16px;
+    --dimen-main-padding: var(--dimen-main-padding-vert) var(--dimen-main-padding-horiz);
+    --dimen-header-padding: 16px;
+
+    --shadow-1: 0 1px 3px rgba(0,0,0,0.12),
+                0 1px 2px rgba(0,0,0,0.24);
+    --shadow-2: 0 3px 6px rgba(0,0,0,0.16),
+                0 3px 6px rgba(0,0,0,0.23);
+    --shadow-3: 0 10px 20px rgba(0,0,0,0.19),
+                0 6px 6px rgba(0,0,0,0.23);
+}
+
+html, body {
+    margin: 0;
+    font-family: Helvetica, Arial, sans-serif;
+    background: var(--color-background);
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: var(--dimen-header-height);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    background: var(--color-primary);
+    padding: var(--dimen-header-padding);
+}
+
+.header__title {
+    margin: 0;
+    font-size: var(--dimen-header-font-size);
+    color: var(--color-headings);
+    font-weight: 300;
+    flex-basis: 0.001px;
+    flex-grow: 1;
+    cursor: default;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.header__nav {
+    font-size: var(--dimen-header-font-size);
+    font-weight: 300;
+    display: flex;
+    align-items: center;
+}
+
+.header__nav > a {
+    color: var(--color-headings);
+    text-decoration: none;
+    margin-left: var(--dimen-header-padding);
+}
+
+.header__nav > a:hover {
+    text-decoration: underline;
+}
+
+.main {
+    margin-top: var(--dimen-header-height);
+    padding-top: var(--dimen-main-padding-vert);
+    padding-bottom: var(--dimen-main-padding-vert);
+}
+
+.main__heading {
+    margin: 8px var(--dimen-main-padding-horiz);
+    font-size: var(--dimen-section-heading-font-size);
+    color: var(--color-headings);
+    font-weight: 300;
+}
+
+.main__content {
+    margin: 8px var(--dimen-main-padding-horiz);
+    font-size: 14px;
+    color: #222;
+}

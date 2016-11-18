@@ -1,0 +1,94 @@
+/**
+ * person-detail.css
+ *
+ * Created by Zander Otavka on 11/17/16.
+ */
+
+.person-detail {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    opacity: 0;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-background);
+    transition: opacity 200ms;
+    z-index: 2;
+}
+
+.person-detail[is-open] {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.person-detail--transitioning {
+    pointer-events: none;
+}
+
+.person-detail__wrapper {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    z-index: 1;
+}
+
+.person-detail__close-button {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    border: none;
+    margin: 0;
+    padding: 4px;
+    background: #fff;
+    border-radius: 50%;
+    transition: background 200ms;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    cursor: pointer;
+}
+
+.person-detail__close-button:focus {
+    background: #eee;
+    outline: none;
+}
+
+.person-detail__close-button:active {
+    background: #ccc;
+}
+
+.person-detail__content {
+    height: 100%;
+    overflow-y: auto;
+}
+
+.person-detail__image-container {
+    position: relative;
+    width: 100%;
+    margin: 0;
+}
+
+.person-detail__name {
+    font-size: 34px; /* todo: also calc with js */
+    padding: 16px;
+}
+
+.person-detail__bio {
+    margin: 16px;
+}
+
+.person-detail__background {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 0;
+}

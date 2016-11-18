@@ -1,0 +1,13 @@
+/**
+ * person-detail-w425.css
+ *
+ * Created by Zander Otavka on 11/17/16.
+ */
+
+.person-detail__wrapper {
+    width: 90vh;
+    max-width: 90%;
+    height: 90%;
+    border-radius: 2px;
+    box-shadow: var(--shadow-2);
+}
