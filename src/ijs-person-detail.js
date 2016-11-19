@@ -61,28 +61,9 @@ class IJSPersonDetail extends HTMLElement {
 
             this._content.scrollTop = 0;
 
-            const transitionDone = this._doneTransitioning();
-            this.classList.toggle("person-detail--transitioning", true);
-
-            element.expandTo(this._imageContainer.getBoundingClientRect(), transitionDone);
-            this._doneTransitioning(element).then(() => {
-                this.classList.toggle("person-detail--open", true);
-            });
-
-            transitionDone.then(() => {
-                this.classList.toggle("person-detail--transitioning", false);
-            });
+            this._transitionIn(element);
         } else if (oldElement) {
-            const transitionDone = this._doneTransitioning(oldElement);
-            this.classList.toggle("person-detail--transitioning", true);
-
-            this.classList.toggle("person-detail--open", false);
-            oldElement.contractFrom(this._imageContainer.getBoundingClientRect(),
-                                    this._doneTransitioning(), transitionDone);
-
-            transitionDone.then(() => {
-                this.classList.toggle("person-detail--transitioning", false);
-            });
+            this._transitionOut(oldElement);
         } else {
             this.classList.toggle("person-detail--open", false);
         }
@@ -108,6 +89,33 @@ class IJSPersonDetail extends HTMLElement {
 
         const detailNamePadding = personNamePadding * detailRatio;
         this._name.style.padding = `${detailNamePadding}px`;
+    }
+
+    _transitionIn(element) {
+        const transitionDone = this._doneTransitioning();
+        this.classList.toggle("person-detail--transitioning", true);
+
+        element.expandTo(this._imageContainer.getBoundingClientRect(), transitionDone);
+        this._doneTransitioning(element).then(() => {
+            this.classList.toggle("person-detail--open", true);
+        });
+
+        transitionDone.then(() => {
+            this.classList.toggle("person-detail--transitioning", false);
+        });
+    }
+
+    _transitionOut(oldElement) {
+        const transitionDone = this._doneTransitioning(oldElement);
+        this.classList.toggle("person-detail--transitioning", true);
+
+        this.classList.toggle("person-detail--open", false);
+        oldElement.contractFrom(this._imageContainer.getBoundingClientRect(),
+                                this._doneTransitioning(), transitionDone);
+
+        transitionDone.then(() => {
+            this.classList.toggle("person-detail--transitioning", false);
+        });
     }
 
     _doneTransitioning(element = this) {
