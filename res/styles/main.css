@@ -16,9 +16,7 @@ html {
     --dimen-header-font-size: 20px;
     --dimen-section-heading-font-size: 24px;
     --dimen-header-height: 52px;
-    --dimen-main-padding-vert: 16px;
     --dimen-main-padding-horiz: 16px;
-    --dimen-main-padding: var(--dimen-main-padding-vert) var(--dimen-main-padding-horiz);
     --dimen-header-padding: 16px;
 
     --shadow-2dp: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
@@ -51,6 +49,7 @@ html, body {
     justify-content: flex-start;
     background: var(--color-primary);
     padding: var(--dimen-header-padding);
+    z-index: 1;
 }
 
 .header__title {
@@ -84,13 +83,11 @@ html, body {
 }
 
 .main {
-    margin-top: var(--dimen-header-height);
-    padding-top: var(--dimen-main-padding-vert);
-    padding-bottom: var(--dimen-main-padding-vert);
+    padding-top: var(--dimen-header-height);
 }
 
 .main__heading {
-    margin: 8px var(--dimen-main-padding-horiz);
+    margin: 16px var(--dimen-main-padding-horiz);
     font-size: var(--dimen-section-heading-font-size);
     color: var(--color-headings);
     font-weight: 300;
