@@ -52,6 +52,8 @@ class IJSPersonDetail extends HTMLElement {
             this._name.textContent = data.name;
             this._bio.textContent = data.bio;
 
+            this._content.scrollTop = 0;
+
             const transitionDone = this._doneTransitioning();
             this.classList.toggle("person-detail--transitioning", true);
 
