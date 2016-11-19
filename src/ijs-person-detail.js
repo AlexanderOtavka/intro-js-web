@@ -12,6 +12,19 @@ class IJSPersonDetail extends HTMLElement {
         return +match;
     }
 
+    static _doneTransitioning(element, property = null) {
+        return new Promise((resolve, reject) => {
+            const listener = event => {
+                if (property && event.propertyName === property) {
+                    resolve(event);
+                    element.removeEventListener("transitionend", listener);
+                }
+            };
+
+            element.addEventListener("transitionend", listener);
+        });
+    }
+
     constructor() {
         super();
         this.personElement = null;
@@ -92,11 +105,11 @@ class IJSPersonDetail extends HTMLElement {
     }
 
     _transitionIn(element) {
-        const transitionDone = this._doneTransitioning();
+        const transitionDone = IJSPersonDetail._doneTransitioning(this, "opacity");
         this.classList.toggle("person-detail--transitioning", true);
 
         element.expandTo(this._imageContainer.getBoundingClientRect(), transitionDone);
-        this._doneTransitioning(element).then(() => {
+        IJSPersonDetail._doneTransitioning(element, "transform").then(() => {
             this.classList.toggle("person-detail--open", true);
         });
 
@@ -106,26 +119,16 @@ class IJSPersonDetail extends HTMLElement {
     }
 
     _transitionOut(oldElement) {
-        const transitionDone = this._doneTransitioning(oldElement);
+        const transitionDone = IJSPersonDetail._doneTransitioning(oldElement, "transform");
         this.classList.toggle("person-detail--transitioning", true);
 
         this.classList.toggle("person-detail--open", false);
         oldElement.contractFrom(this._imageContainer.getBoundingClientRect(),
-                                this._doneTransitioning(), transitionDone);
+                                IJSPersonDetail._doneTransitioning(this, "opacity"),
+                                transitionDone);
 
         transitionDone.then(() => {
             this.classList.toggle("person-detail--transitioning", false);
-        });
-    }
-
-    _doneTransitioning(element = this) {
-        return new Promise((resolve, reject) => {
-            const listener = event => {
-                resolve(event);
-                element.removeEventListener("transitionend", listener);
-            };
-
-            element.addEventListener("transitionend", listener);
         });
     }
 }
