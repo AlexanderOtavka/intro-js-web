@@ -1,0 +1,9 @@
+/**
+ * person-detail-w768.css
+ *
+ * Created by Zander Otavka on 11/19/16.
+ */
+
+.person-detail__wrapper {
+    max-width: 400px;
+}

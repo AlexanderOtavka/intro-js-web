@@ -5,13 +5,6 @@
  */
 
 class IJSPersonDetail extends HTMLElement {
-    static _getStylePropValuePx(propName) {
-        const docStyles = window.getComputedStyle(document.documentElement);
-        const valueStr = docStyles.getPropertyValue(propName);
-        const match = valueStr.match(/(\d+)px/)[1];
-        return +match;
-    }
-
     static _doneTransitioning(element, property = null) {
         return new Promise((resolve, reject) => {
             const listener = event => {
@@ -27,7 +20,7 @@ class IJSPersonDetail extends HTMLElement {
 
     constructor() {
         super();
-        this.personElement = null;
+        this._personElement = null;
 
         this.onClose = this.onClose.bind(this);
         this.onResize = this.onResize.bind(this);
@@ -74,7 +67,10 @@ class IJSPersonDetail extends HTMLElement {
 
             this._content.scrollTop = 0;
 
-            this._transitionIn(element);
+            requestAnimationFrame(() => {
+                this.onResize();
+                requestAnimationFrame(() => this._transitionIn(element));
+            });
         } else if (oldElement) {
             this._transitionOut(oldElement);
         } else {
@@ -87,20 +83,21 @@ class IJSPersonDetail extends HTMLElement {
     }
 
     onResize() {
-        const rect = this._wrapper.getBoundingClientRect();
-        const detailWidth = rect.width;
-        this._imageContainer.style.height = `${detailWidth}px`;
+        if (!this.personElement) return;
 
-        const personWidth = IJSPersonDetail._getStylePropValuePx("--person-size");
-        const personFontSize = IJSPersonDetail._getStylePropValuePx("--person-name-font-size");
-        const personNamePadding = IJSPersonDetail._getStylePropValuePx("--person-name-padding");
+        const personRect = this.personElement.getBoundingClientRect();
+        const personWidth = personRect.width;
+        const personFontSize = this._getStylePropValuePx("--person-name-font-size");
+        const personNamePadding = this._getStylePropValuePx("--person-name-padding");
 
+        const detailRect = this._wrapper.getBoundingClientRect();
+        const detailWidth = detailRect.width;
         const detailRatio = detailWidth / personWidth;
-
         const detailFontSize = personFontSize * detailRatio;
-        this._name.style.fontSize = `${detailFontSize}px`;
-
         const detailNamePadding = personNamePadding * detailRatio;
+
+        this._imageContainer.style.height = `${detailWidth}px`;
+        this._name.style.fontSize = `${detailFontSize}px`;
         this._name.style.padding = `${detailNamePadding}px`;
     }
 
@@ -130,6 +127,13 @@ class IJSPersonDetail extends HTMLElement {
         transitionDone.then(() => {
             this.classList.toggle("person-detail--transitioning", false);
         });
+    }
+
+    _getStylePropValuePx(propName) {
+        const styles = window.getComputedStyle(this.personElement);
+        const valueStr = styles.getPropertyValue(propName);
+        const match = valueStr.match(/(\d+)px/)[1];
+        return +match;
     }
 }
 
