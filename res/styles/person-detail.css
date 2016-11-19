@@ -68,16 +68,6 @@
     overflow-y: auto;
 }
 
-.person-detail__image-container {
-    position: relative;
-    width: 100%;
-    margin: 0;
-}
-
-.person-detail__name {
-    padding: 16px;
-}
-
 .person-detail__bio {
     margin: 16px;
 }

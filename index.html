@@ -39,18 +39,24 @@
         <h2 class="main__heading">People</h2>
         <ijs-person-grid class="person-grid" source-url="/people.json">
             <ijs-person class="person">
-                <img class="person__image" src="/res/images/bill-nye.jpg" />
-                <h3 class="person__name">Bill Nye</h3>
+                <figure class="person__image-container">
+                    <img class="person__image" src="/res/images/bill-nye.jpg" />
+                    <figcaption class="person__name">Bill Nye</figcaption>
+                </figure>
             </ijs-person>
 
             <ijs-person class="person">
-                <img class="person__image" src="/res/images/eobard-thawne.jpg" />
-                <h3 class="person__name">Eobard Thawne</h3>
+                <figure class="person__image-container">
+                    <img class="person__image" src="/res/images/eobard-thawne.jpg" />
+                    <figcaption class="person__name">Eobard Thawne</figcaption>
+                </figure>
             </ijs-person>
 
             <ijs-person class="person">
-                <img class="person__image" src="/res/images/neil-tyson.jpg" />
-                <h3 class="person__name">Neil DeGrasse Tyson</h3>
+                <figure class="person__image-container">
+                    <img class="person__image" src="/res/images/neil-tyson.jpg" />
+                    <figcaption class="person__name">Neil DeGrasse Tyson</figcaption>
+                </figure>
             </ijs-person>
         </ijs-person-grid>
     </main>
@@ -61,7 +67,7 @@
                 <img src="/res/drawables/close.svg" />
             </button>
             <section class="person-detail__content">
-                <figure class="person-detail__image-container">
+                <figure class="person__image-container person-detail__image-container">
                     <img class="person__image person-detail__image" src="/res/images/bill-nye.jpg" />
                     <figcaption class="person__name person-detail__name">Bill Nye</figcaption>
                 </figure>

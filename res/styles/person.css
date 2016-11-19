@@ -6,7 +6,8 @@
 
 .person {
     width: var(--person-size);
-    height: var(--person-size);
+    max-width: calc(var(--person-size) * 2);
+    flex-grow: 1;
     display: inline-block;
     position: relative;
 }
@@ -20,6 +21,13 @@
 .person--expanded {
     opacity: 0;
     pointer-events: none;
+}
+
+.person__image-container {
+    position: relative;
+    width: 100%;
+    margin: 0;
+    padding-bottom: 100%;
 }
 
 .person__image {
