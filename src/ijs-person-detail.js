@@ -5,6 +5,13 @@
  */
 
 class IJSPersonDetail extends HTMLElement {
+    static _getStylePropValuePx(propName) {
+        const docStyles = window.getComputedStyle(document.documentElement);
+        const valueStr = docStyles.getPropertyValue(propName);
+        const match = valueStr.match(/(\d+)px/)[1];
+        return +match;
+    }
+
     constructor() {
         super();
         this.personElement = null;
@@ -90,10 +97,9 @@ class IJSPersonDetail extends HTMLElement {
         const detailWidth = rect.width;
         this._imageContainer.style.height = `${detailWidth}px`;
 
-        // todo: get values from css
-        const personWidth = 200;
-        const personFontSize = 18;
-        const personNamePadding = 8;
+        const personWidth = IJSPersonDetail._getStylePropValuePx("--person-size");
+        const personFontSize = IJSPersonDetail._getStylePropValuePx("--person-name-font-size");
+        const personNamePadding = IJSPersonDetail._getStylePropValuePx("--person-name-padding");
 
         const detailRatio = detailWidth / personWidth;
 

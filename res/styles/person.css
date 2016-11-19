@@ -5,8 +5,8 @@
  */
 
 .person {
-    width: 200px;
-    height: 200px;
+    width: var(--person-size);
+    height: var(--person-size);
     display: inline-block;
     position: relative;
 }
@@ -33,12 +33,12 @@
     right: 0;
     bottom: 0;
     left: 0;
-    padding: 8px;
+    padding: var(--person-name-padding);
     margin: 0;
     background: rgba(0, 0, 0, 0.3);
     color: white;
     font-weight: 300;
-    font-size: 18px;
+    font-size: var(--person-name-font-size);
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
