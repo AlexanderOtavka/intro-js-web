@@ -1,8 +1,18 @@
 [
     {
+        "name": "Neil DeGrasse Tyson",
+        "image": "/res/images/neil-tyson.jpg",
+        "bio": "Neil deGrasse Tyson is an American astrophysicist, cosmologist, author, and science communicator. Since 1996, he has been the Frederick P. Rose Director of the Hayden Planetarium at the Rose Center for Earth and Space in New York City."
+    },
+    {
         "name": "Eobard Thawne",
         "image": "/res/images/eobard-thawne.jpg",
         "bio": "Professor Eobard \"Zoom\" Thawne, otherwise known as the Reverse-Flash, is a fictional supervillain appearing in comic books published by DC Comics. Created by John Broome and Carmine Infantino, he first appeared in The Flash #139 in September 1963."
+    },
+    {
+        "name": "Michelle Obama",
+        "image": "/res/images/michelle-obama.jpg",
+        "bio": "Michelle LaVaughn Robinson Obama is an American lawyer, writer, and First Lady of the United States. She is married to the 44th and current President of the United States, Barack Obama, and is the first African-American First Lady."
     },
     {
         "name": "Bill Nye",
@@ -10,8 +20,13 @@
         "bio": "William Sanford \"Bill\" Nye, popularly known as Bill Nye the Science Guy, is an American actor, science educator, television presenter, and mechanical engineer."
     },
     {
-        "name": "Neil DeGrasse Tyson",
-        "image": "/res/images/neil-tyson.jpg",
-        "bio": "Neil deGrasse Tyson is an American astrophysicist, cosmologist, author, and science communicator. Since 1996, he has been the Frederick P. Rose Director of the Hayden Planetarium at the Rose Center for Earth and Space in New York City."
+        "name": "Sonia Sotomayor",
+        "image": "/res/images/sonia-sotomayor.jpg",
+        "bio": "Sonia Maria Sotomayor, born June 25, 1954, is an Associate Justice of the Supreme Court of the United States, serving since August 2009. She has the distinction of being its first justice of Hispanic heritage, the first Latina, its third female justice, and its twelfth Roman Catholic justice. Sotomayor, along with John Roberts and Elena Kagan, is one of the youngest justices on the Supreme Court."
+    },
+    {
+        "name": "Inara Serra",
+        "image": "/res/images/inara-serra.jpg",
+        "bio": "Inara, born in the late 25th century on Sihnon, is a Companion, a high-society courtesan licensed by the Union of Allied Planets (the \"Alliance\"). In Alliance society, Companions are part of the social elite, often accompanying the wealthy and powerful. They have considerable ritual and ceremony surrounding their services, which appear to extend beyond sex to nurturing psychological and emotional well being."
     }
 ]

@@ -25,6 +25,8 @@
     <link rel="stylesheet" href="/res/styles/person-detail-w768.css" media="(min-width: 768px)" />
 
     <link rel="import" href="/res/views/person.html" id="person-view" />
+
+    <link rel="preload" href="/people.json" />
 </head>
 
 <body>
@@ -40,8 +42,8 @@
         <ijs-person-grid class="person-grid" source-url="/people.json">
             <ijs-person class="person">
                 <figure class="person__image-container">
-                    <img class="person__image" src="/res/images/bill-nye.jpg" />
-                    <figcaption class="person__name">Bill Nye</figcaption>
+                    <img class="person__image" src="/res/images/neil-tyson.jpg" />
+                    <figcaption class="person__name">Neil DeGrasse Tyson</figcaption>
                 </figure>
             </ijs-person>
 
@@ -54,8 +56,8 @@
 
             <ijs-person class="person">
                 <figure class="person__image-container">
-                    <img class="person__image" src="/res/images/neil-tyson.jpg" />
-                    <figcaption class="person__name">Neil DeGrasse Tyson</figcaption>
+                    <img class="person__image" src="/res/images/michelle-obama.jpg" />
+                    <figcaption class="person__name">Michelle Obama</figcaption>
                 </figure>
             </ijs-person>
         </ijs-person-grid>
