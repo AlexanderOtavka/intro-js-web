@@ -36,11 +36,11 @@ class IJSPersonDetail extends HTMLElement {
         this._bio = this.querySelector(".person-detail__bio");
         this._background = this.querySelector(".person-detail__background");
 
+        this.onResize();
+
         this._closeButton.addEventListener("click", this.onClose);
         this._background.addEventListener("click", this.onClose);
         window.addEventListener("resize", this.onResize);
-
-        this.onResize();
     }
 
     disconnectedCallback() {

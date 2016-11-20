@@ -12,10 +12,23 @@ class IJSPersonGrid extends HTMLElement {
     constructor(sourceURL) {
         super();
 
+        this._sourceURL = sourceURL;
         this._isFetching = false;
-        this.sourceURL = sourceURL;
+        this._endSpacerLength = 0;
         this._personTemplate = document.querySelector("link#person-view").import
             .querySelector("#person-tmpl");
+
+        this.onResize = this.onResize.bind(this);
+    }
+
+    connectedCallback() {
+        this.fetchPeople();
+
+        window.addEventListener("resize", this.onResize);
+    }
+
+    disconnectedCallback() {
+        window.removeEventListener("resize", this.onResize);
     }
 
     attributeChangedCallback(attrName, oldVal, newVal) {
@@ -64,7 +77,41 @@ class IJSPersonGrid extends HTMLElement {
 
                 this.appendChild(documentFragment);
                 this._isFetching = false;
+
+                // Wait a frame for layout to rerun on the new elements
+                requestAnimationFrame(() => this.onResize());
             });
+    }
+
+    onResize() {
+        const personCount = this.querySelectorAll("ijs-person").length;
+        if (personCount === 0) return;
+
+        const width = this.getBoundingClientRect().width;
+        const personWidth = +window.getComputedStyle(this)
+            .getPropertyValue("--person-size")
+            .match(/(\d+)px/)[1];
+
+        const rowLength = Math.floor(width / personWidth);
+        const lastRowLength = personCount % rowLength;
+        const newEndSpacerLength = (lastRowLength === 0) ? 0 : rowLength - lastRowLength;
+
+        if (newEndSpacerLength === this._endSpacerLength) return;
+        this._endSpacerLength = newEndSpacerLength;
+
+        let spacers = this.querySelectorAll(".person-grid__spacer");
+        for (let i = spacers.length; i > newEndSpacerLength; i--) {
+            spacers[i - 1].remove();
+        }
+
+        const documentFragment = document.createDocumentFragment();
+        for (let i = spacers.length; i < newEndSpacerLength; i++) {
+            const spacer = document.createElement("div");
+            spacer.classList.add("person-grid__spacer", "person");
+            documentFragment.appendChild(spacer);
+        }
+
+        this.appendChild(documentFragment);
     }
 }
 

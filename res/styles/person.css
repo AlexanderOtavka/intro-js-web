@@ -5,9 +5,7 @@
  */
 
 .person {
-    width: var(--person-size);
-    max-width: calc(var(--person-size) * 2);
-    flex-grow: 1;
+    flex: 1 var(--person-size);
     display: inline-block;
     position: relative;
 }

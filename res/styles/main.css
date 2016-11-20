@@ -57,8 +57,7 @@ html, body {
     font-size: var(--dimen-header-font-size);
     color: var(--color-headings);
     font-weight: 300;
-    flex-basis: 0.001px;
-    flex-grow: 1;
+    flex: 1 0.001px;
     cursor: default;
     white-space: nowrap;
     text-overflow: ellipsis;
