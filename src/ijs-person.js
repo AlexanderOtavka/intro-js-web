@@ -28,31 +28,31 @@ class IJSPerson extends HTMLElement {
     }
 
     expandTo(otherRect, endDelayDone) {
-        this.classList.toggle("person--transitioning", true);
+        this.classList.add("person--transitioning");
 
         this.style.transform = this._getTransformFor(otherRect);
 
         endDelayDone.then(() => {
-            this.classList.toggle("person--transitioning", false);
-            this.classList.toggle("person--expanded", true);
+            this.classList.remove("person--transitioning");
+            this.classList.add("person--expanded");
             this.style.transform = "none";
         });
     }
 
     contractFrom(otherRect, delayDone, transitionDone) {
-        this.classList.toggle("person--expanded", false);
+        this.classList.remove("person--expanded");
 
         this.style.transform = this._getTransformFor(otherRect);
 
         requestAnimationFrame(() => {
-            this.classList.toggle("person--transitioning", true);
+            this.classList.add("person--transitioning");
 
             delayDone.then(() => {
-                this.style.transform = "none"
+                this.style.transform = "none";
             });
 
             transitionDone.then(() => {
-                this.classList.toggle("person--transitioning", false)
+                this.classList.remove("person--transitioning");
             });
         });
     }

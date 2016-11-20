@@ -74,7 +74,7 @@ class IJSPersonDetail extends HTMLElement {
         } else if (oldElement) {
             this._transitionOut(oldElement);
         } else {
-            this.classList.toggle("person-detail--open", false);
+            this.classList.remove("person-detail--open");
         }
     }
 
@@ -103,29 +103,29 @@ class IJSPersonDetail extends HTMLElement {
 
     _transitionIn(element) {
         const transitionDone = IJSPersonDetail._doneTransitioning(this, "opacity");
-        this.classList.toggle("person-detail--transitioning", true);
+        this.classList.add("person-detail--transitioning");
 
         element.expandTo(this._imageContainer.getBoundingClientRect(), transitionDone);
         IJSPersonDetail._doneTransitioning(element, "transform").then(() => {
-            this.classList.toggle("person-detail--open", true);
+            this.classList.add("person-detail--open");
         });
 
         transitionDone.then(() => {
-            this.classList.toggle("person-detail--transitioning", false);
+            this.classList.remove("person-detail--transitioning");
         });
     }
 
     _transitionOut(oldElement) {
         const transitionDone = IJSPersonDetail._doneTransitioning(oldElement, "transform");
-        this.classList.toggle("person-detail--transitioning", true);
+        this.classList.add("person-detail--transitioning");
 
-        this.classList.toggle("person-detail--open", false);
+        this.classList.remove("person-detail--open");
         oldElement.contractFrom(this._imageContainer.getBoundingClientRect(),
                                 IJSPersonDetail._doneTransitioning(this, "opacity"),
                                 transitionDone);
 
         transitionDone.then(() => {
-            this.classList.toggle("person-detail--transitioning", false);
+            this.classList.remove("person-detail--transitioning");
         });
     }
 
