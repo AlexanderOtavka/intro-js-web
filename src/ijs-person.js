@@ -24,6 +24,7 @@ class IJSPerson extends HTMLElement {
             detail: { data: this.data },
             bubbles: true
         });
+
         this.dispatchEvent(clickEvent);
     }
 
