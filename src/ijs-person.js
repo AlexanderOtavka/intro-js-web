@@ -12,6 +12,8 @@ class IJSPerson extends HTMLElement {
     }
 
     connectedCallback() {
+        this.tabIndex = 0;
+
         this.addEventListener("click", this.onClick);
     }
 
