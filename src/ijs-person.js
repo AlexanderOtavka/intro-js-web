@@ -5,8 +5,9 @@
  */
 
 class IJSPerson extends HTMLElement {
-    constructor() {
+    constructor(data = null) {
         super();
+        this.data = data;
 
         this.onClick = this.onClick.bind(this);
     }

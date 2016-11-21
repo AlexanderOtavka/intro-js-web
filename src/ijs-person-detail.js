@@ -63,8 +63,7 @@ class IJSPersonDetail extends HTMLElement {
         // Disable annoying scrolling on body when dialog is open
         document.body.classList.toggle("body--noscroll", !!element);
 
-        // todo: check out inert attribute
-        // Set inert for accessibility
+        // For accessibility
         const header = document.querySelector(".header");
         const main = document.querySelector(".main");
         header.inert = !!element;
@@ -74,6 +73,7 @@ class IJSPersonDetail extends HTMLElement {
         if (element) {
             const data = element.data;
             this._image.src = data.image;
+            this._image.alt = data.name;
             this._name.textContent = data.name;
             this._bio.textContent = data.bio;
 

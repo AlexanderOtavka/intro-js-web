@@ -70,6 +70,7 @@ class IJSPersonGrid extends HTMLElement {
 
                     personElement.data = personData;
                     image.src = personData.image;
+                    image.alt = personData.name;
                     name.textContent = personData.name;
 
                     documentFragment.appendChild(personView);
