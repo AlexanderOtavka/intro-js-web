@@ -59,6 +59,8 @@ class IJSPersonDetail extends HTMLElement {
         const oldElement = this._personElement;
         this._personElement = element;
 
+        document.body.classList.toggle("body--noscroll", !!element);
+
         if (element) {
             const data = element.data;
             this._image.src = data.image;

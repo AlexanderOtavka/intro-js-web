@@ -37,6 +37,10 @@ html, body {
     background: var(--color-background);
 }
 
+.body--noscroll {
+    overflow: hidden;
+}
+
 .header {
     position: fixed;
     top: 0;
