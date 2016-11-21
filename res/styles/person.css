@@ -6,6 +6,7 @@
 
 .person {
     flex: 1 var(--person-size);
+    max-width: calc(var(--person-size) * 2);
     display: inline-block;
     position: relative;
     cursor: pointer;
