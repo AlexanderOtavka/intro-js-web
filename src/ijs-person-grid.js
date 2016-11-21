@@ -62,7 +62,7 @@ class IJSPersonGrid extends HTMLElement {
             .then(people => {
                 const documentFragment = document.createDocumentFragment();
 
-                for (const personData of people) {
+                for (let personData of people) {
                     const personView = document.importNode(this._personTemplate.content, true);
                     const personElement = personView.querySelector(".person");
                     const image = personView.querySelector(".person__image");
