@@ -64,11 +64,8 @@ class IJSPersonDetail extends HTMLElement {
         document.body.classList.toggle("body--noscroll", !!element);
 
         // For accessibility
-        const header = document.querySelector(".header");
-        const main = document.querySelector(".main");
-        header.inert = !!element;
-        main.inert = !!element;
         this.inert = !element;
+        this.setAttribute("aria-hidden", !element ? "true" : "false");
 
         if (element) {
             const data = element.data;
@@ -91,6 +88,15 @@ class IJSPersonDetail extends HTMLElement {
             this._transitionOut(oldElement);
         } else {
             this.classList.remove("person-detail--open");
+        }
+
+        if (!!oldElement === !element) {
+            const event = new CustomEvent("ijs-person-detail-toggle", {
+                detail: { isOpen: !!element },
+                bubbles: true
+            });
+
+            this.dispatchEvent(event);
         }
     }
 
