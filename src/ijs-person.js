@@ -45,6 +45,7 @@ class IJSPerson extends HTMLElement {
 
         this.style.transform = this._getTransformFor(otherRect);
 
+        // Wait a frame so the transform can apply instantly without the transition
         requestAnimationFrame(() => {
             this.classList.add("person--transitioning");
 

@@ -59,7 +59,16 @@ class IJSPersonDetail extends HTMLElement {
         const oldElement = this._personElement;
         this._personElement = element;
 
+        // Disable annoying scrolling on body when dialog is open
         document.body.classList.toggle("body--noscroll", !!element);
+
+        // todo: check out inert attribute
+        // Set aria-hidden attributes for accessibility
+        const header = document.querySelector(".header");
+        const main = document.querySelector(".main");
+        header.setAttribute("aria-hidden", !!element ? "true" : "false");
+        main.setAttribute("aria-hidden", !!element ? "true" : "false");
+        this.setAttribute("aria-hidden", !!element ? "false" : "true");
 
         if (element) {
             const data = element.data;
@@ -69,8 +78,12 @@ class IJSPersonDetail extends HTMLElement {
 
             this._content.scrollTop = 0;
 
+            // Wait for layout to be run with new image, name and bio before reading from the dom
+            // to prevent forced reflow (aka forced synchronous layout)
             requestAnimationFrame(() => {
                 this.onResize();
+
+                // Again, wait for layout to be run on newly resized content before reading
                 requestAnimationFrame(() => this._transitionIn(element));
             });
         } else if (oldElement) {
@@ -85,19 +98,22 @@ class IJSPersonDetail extends HTMLElement {
     }
 
     onResize() {
-        if (!this.personElement) return;
+        if (!this.personElement || this.classList.contains("person-detail--transitioning")) return;
 
+        // Read sizes of original element
         const personRect = this.personElement.getBoundingClientRect();
         const personWidth = personRect.width;
         const personFontSize = this._getStylePropValuePx("--person-name-font-size");
         const personNamePadding = this._getStylePropValuePx("--person-name-padding");
 
+        // Calculate ratio and component sizes.
         const detailRect = this._wrapper.getBoundingClientRect();
         const detailWidth = detailRect.width;
         const detailRatio = detailWidth / personWidth;
         const detailFontSize = personFontSize * detailRatio;
         const detailNamePadding = personNamePadding * detailRatio;
 
+        // Set new sizes only after all dom reads are done
         this._imageContainer.style.height = `${detailWidth}px`;
         this._name.style.fontSize = `${detailFontSize}px`;
         this._name.style.padding = `${detailNamePadding}px`;
