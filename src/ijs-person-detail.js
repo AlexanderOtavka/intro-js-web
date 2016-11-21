@@ -18,9 +18,9 @@ class IJSPersonDetail extends HTMLElement {
         });
     }
 
-    constructor() {
+    constructor(personElement = null) {
         super();
-        this._personElement = null;
+        this._personElement = personElement;
 
         this.onClose = this.onClose.bind(this);
         this.onResize = this.onResize.bind(this);
@@ -36,7 +36,8 @@ class IJSPersonDetail extends HTMLElement {
         this._bio = this.querySelector(".person-detail__bio");
         this._background = this.querySelector(".person-detail__background");
 
-        this.onResize();
+        // Run the setter function to set up initial state
+        this.personElement = this._personElement;
 
         this._closeButton.addEventListener("click", this.onClose);
         this._background.addEventListener("click", this.onClose);
@@ -63,12 +64,12 @@ class IJSPersonDetail extends HTMLElement {
         document.body.classList.toggle("body--noscroll", !!element);
 
         // todo: check out inert attribute
-        // Set aria-hidden attributes for accessibility
+        // Set inert for accessibility
         const header = document.querySelector(".header");
         const main = document.querySelector(".main");
-        header.setAttribute("aria-hidden", !!element ? "true" : "false");
-        main.setAttribute("aria-hidden", !!element ? "true" : "false");
-        this.setAttribute("aria-hidden", !!element ? "false" : "true");
+        header.inert = !!element;
+        main.inert = !!element;
+        this.inert = !element;
 
         if (element) {
             const data = element.data;
@@ -94,7 +95,10 @@ class IJSPersonDetail extends HTMLElement {
     }
 
     onClose() {
-        this.personElement = null;
+        // Wait a frame so the click event doesn't fall through to whatever is behind the dialog
+        requestAnimationFrame(() => {
+            this.personElement = null;
+        });
     }
 
     onResize() {
