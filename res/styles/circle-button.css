@@ -1,0 +1,43 @@
+/**
+ * circle-button.css
+ *
+ * Created by Zander Otavka on 11/21/16.
+ */
+
+.circle-button {
+    position: relative;
+    border: none;
+    margin: 0;
+    padding: 4px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.circle-button:focus {
+    outline: none;
+}
+
+.circle-button::before,
+.circle-button::after {
+    position: absolute;
+    display: block;
+    content: "";
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: var(--circle-button-ripple-color, #000);
+    border-radius: 50%;
+    transform: scale(0.1);
+    opacity: 0;
+    transition: transform 150ms;
+}
+
+.circle-button:active::before,
+.circle-button:focus::after {
+    transform: scale(1);
+    opacity: 0.2;
+}

@@ -9,3 +9,7 @@
     flex-direction: row;
     flex-wrap: wrap;
 }
+
+.person-grid__spacer {
+    pointer-events: none;
+}

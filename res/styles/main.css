@@ -81,7 +81,8 @@ html, body {
     margin-left: var(--dimen-header-padding);
 }
 
-.header__nav > a:hover {
+.header__nav > a:hover,
+.header__nav > a:focus {
     text-decoration: underline;
 }
 

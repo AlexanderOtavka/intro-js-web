@@ -8,6 +8,11 @@
     flex: 1 var(--person-size);
     display: inline-block;
     position: relative;
+    cursor: pointer;
+}
+
+.person:focus {
+    outline: none;
 }
 
 .person--transitioning {
@@ -48,4 +53,9 @@
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
+}
+
+.person:hover .person__name,
+.person:focus .person__name {
+    text-decoration: underline;
 }
