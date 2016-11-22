@@ -84,6 +84,7 @@ html, body {
 .header__nav > a:hover,
 .header__nav > a:focus {
     text-decoration: underline;
+    outline: none;
 }
 
 .main {
