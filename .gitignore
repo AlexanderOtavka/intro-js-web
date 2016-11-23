@@ -1,0 +1,4 @@
+# Other Files
+.DS_Store
+npm-debug.log
+*.sw[op]
