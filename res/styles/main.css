@@ -96,6 +96,7 @@ html, body {
     font-size: var(--dimen-section-heading-font-size);
     color: var(--color-headings);
     font-weight: 300;
+    cursor: default;
 }
 
 .main__content {
