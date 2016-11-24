@@ -1,0 +1,25 @@
+{
+  "name": "intro-js-web",
+  "version": "0.0.0",
+  "devDependencies": {
+    "autoprefixer": "^6.5.3",
+    "babel-core": "^6.18.2",
+    "babel-preset-es2015": "^6.18.0",
+    "cssnano": "^3.8.0",
+    "del": "^2.2.2",
+    "fastpipe": "^1.0.2",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2",
+    "gulp-if": "^2.0.2",
+    "gulp-postcss": "^6.2.0",
+    "gulp-size": "^2.1.0",
+    "gulp-sourcemaps": "^1.9.1",
+    "gulp-uglify": "^2.0.0",
+    "gulp-unassert": "^1.0.0",
+    "htmlmin": "0.0.7",
+    "run-sequence": "^1.2.2"
+  },
+  "scripts": {
+    "build": "gulp"
+  }
+}
